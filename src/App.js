@@ -13,7 +13,7 @@ function App() {
         <Switch>
           <Route exact path="/"
             render={() => <TwoPointPage />} />
-          <Route path="/line-app"
+          <Route exact path="/line-app"
             render={() => <TwoPointPage />} />
           <Route path="/twoPointPage"
             render={() => <TwoPointPage />} />
