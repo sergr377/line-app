@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
+import TwoPointPage from './components/EmptyPage/TwoPointPage';
+import ThreePointPage from './components/EmptyPage/ThreePointPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route exact path="/"
+            render={() => <TwoPointPage />} />
+          <Route exact path="/twoPointPage"
+            render={() => <TwoPointPage />} />
+          <Route path="/threePointPage"
+            render={() => <ThreePointPage />} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
