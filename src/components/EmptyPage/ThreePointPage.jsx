@@ -203,35 +203,37 @@ export default function ThreePointPage() {
                 <div id={'canvasField'} className={s.canvasField} onClick={canvasField}></div>
             </div>
             <div>
+                <p className={s.hint1}>Put a dot on the chart:</p>
                 <button id={'button1'} className={s.button} onClick={pt1}>pt1</button>
                 <button id={'button2'} className={s.button} onClick={pt2}>pt2</button>
                 <button id={'button3'} className={s.button} onClick={pt3}>pt3</button>
             </div>
+            <p className={s.hint1}>Put the coordinates:</p>
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt1X" />
-                <button id={'Pt1X'} onClick={setCoord} className={s.button} /> pt1 X:<span id="resultPt1X">{valuePt1X}</span>
+                <button id={'Pt1X'} onClick={setCoord} className={s.button} >Put </button> pt1 X:<span id="resultPt1X">{valuePt1X}</span>
             </div>
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt1Y" />
-                <button id={'Pt1Y'} onClick={setCoord} className={s.button} /> pt1 Y:<span id="resultPt1Y">{valuePt1Y}</span>
+                <button id={'Pt1Y'} onClick={setCoord} className={s.button}  >Put </button> pt1 Y:<span id="resultPt1Y">{valuePt1Y}</span>
             </div>
             -----------------------------------------------------------------------------------------------
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt2X" />
-                <button id={'Pt2X'} onClick={setCoord} className={s.button} /> pt2 X: <span id="resultPt2X">{valuePt2X}</span>
+                <button id={'Pt2X'} onClick={setCoord} className={s.button}  >Put </button> pt2 X: <span id="resultPt2X">{valuePt2X}</span>
             </div>
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt2Y" />
-                <button id={'Pt2Y'} onClick={setCoord} className={s.button} /> pt2 Y: <span id="resultPt2Y">{valuePt2Y}</span>
+                <button id={'Pt2Y'} onClick={setCoord} className={s.button}  >Put </button> pt2 Y: <span id="resultPt2Y">{valuePt2Y}</span>
             </div>
             -----------------------------------------------------------------------------------------------
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt3X" />
-                <button id={'Pt3X'} onClick={setCoord} className={s.button} /> pt3 X: <span id="resultPt3X">{valuePt3X}</span>
+                <button id={'Pt3X'} onClick={setCoord} className={s.button}  >Put </button> pt3 X: <span id="resultPt3X">{valuePt3X}</span>
             </div>
             <div className={s.buttonGroup}>
                 <input className={s.inputField} type="text" id="valuePt3Y" />
-                <button id={'Pt3Y'} onClick={setCoord} className={s.button} /> pt3 Y: <span id="resultPt3Y">{valuePt3Y}</span>
+                <button id={'Pt3Y'} onClick={setCoord} className={s.button}  >Put </button> pt3 Y: <span id="resultPt3Y">{valuePt3Y}</span>
             </div>
         </div>
     );

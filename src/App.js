@@ -13,7 +13,9 @@ function App() {
         <Switch>
           <Route exact path="/"
             render={() => <TwoPointPage />} />
-          <Route exact path="/twoPointPage"
+          <Route path="/line-app"
+            render={() => <TwoPointPage />} />
+          <Route path="/twoPointPage"
             render={() => <TwoPointPage />} />
           <Route path="/threePointPage"
             render={() => <ThreePointPage />} />
