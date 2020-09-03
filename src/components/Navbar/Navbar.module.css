@@ -14,7 +14,6 @@
 }
 
 .navLink {
-  margin: 23px;
   font-style: normal;
   font-weight: 800;
   font-size: 12px;
@@ -24,6 +23,11 @@
   text-transform: uppercase;
   text-decoration: none;
   color: #262525;
+  
+  padding: 6px;
+  padding-bottom: 2px;
+  margin: 17px;
+  border-bottom: 4px solid gray;
 }
 
 .backgroundBlock {
@@ -72,5 +76,5 @@
   padding: 6px;
   padding-bottom: 2px;
   margin: 17px;
-  border-bottom: 4px solid #D88F5E;
+  border-bottom: 4px solid #d88148;
 }
