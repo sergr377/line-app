@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# line-app
 
-## Available Scripts
+Интерактивная демонстрация кривых Безье на `<canvas>`. По построенной кривой пробегают
+засечки с равным шагом параметра `t` — по их сгущению видно, где точка движется медленнее.
 
-In the project directory, you can run:
+Демо: https://sergr377.github.io/line-app
 
-### `npm start`
+## Страницы
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **two points curve** — кривая первой степени: отрезок между `start` и `end`.
+- **three points curve** — квадратичная кривая: `start`, `control`, `end`.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Управление
 
-### `npm test`
+Точку можно перетащить прямо по холсту, либо выбрать кнопкой `pt1`/`pt2`/`pt3` и кликнуть
+по полю, либо ввести координаты вручную — Enter или кнопка «Put». Координаты, выбранные
+на холсте, подставляются в поля автоматически.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Запуск
 
-### `npm run build`
+```
+npm install
+npm start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+На Node 17 и новее `react-scripts` 3.4.3 падает на устаревшем хешировании webpack 4,
+поэтому нужен флаг:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+NODE_OPTIONS=--openssl-legacy-provider npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Тесты — `npm test`, продакшен-сборка — `npm run build`, публикация на GitHub Pages —
+`npm run deploy`.
 
-### `npm run eject`
+## Устройство
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+React 16 на хуках, react-router-dom 5, Create React App 3.4.3, отрисовка через Canvas 2D.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Маршрутизация на `HashRouter`: GitHub Pages не умеет серверные rewrite-правила, и с
+`BrowserRouter` прямой заход на вложенный маршрут отдавал бы 404.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Обе страницы — это один компонент `CurvePage`, которому передаётся набор опорных точек.
+Значение кривой считает алгоритм де Кастельжо в `src/components/CurvePage/bezier.js`,
+поэтому степень кривой ограничена только длиной этого набора.
