@@ -89,29 +89,20 @@ export default function CurvePage({ initialPoints }) {
 
         drawStatic(ctx, points);
 
-        let rafId = null;
-        let startedAt = null;
+        //засечки идут по таймеру, а не по requestAnimationFrame: rAF молчит там,
+        //где страница не компонует кадры (фоновая вкладка), и анимации не видно
         let drawn = 0;
+        const timer = setInterval(() => {
+            drawTick(ctx, points, drawn * T_STEP);
+            drawn += 1;
 
-        const frame = (timestamp) => {
-            if (startedAt === null) startedAt = timestamp;
-
-            //сколько засечек должно быть видно к этому моменту
-            const due = Math.min(TICKS, Math.floor((timestamp - startedAt) / TICK_MS));
-            while (drawn < due) {
-                drawTick(ctx, points, drawn * T_STEP);
-                drawn += 1;
+            if (drawn >= TICKS) {
+                clearInterval(timer);
+                if (points.length > 2) drawCurve(ctx, points);
             }
+        }, TICK_MS);
 
-            if (drawn < TICKS) {
-                rafId = requestAnimationFrame(frame);
-            } else if (points.length > 2) {
-                drawCurve(ctx, points);
-            }
-        };
-
-        rafId = requestAnimationFrame(frame);
-        return () => cancelAnimationFrame(rafId);
+        return () => clearInterval(timer);
     }, [points]);
 
     const movePoint = useCallback((id, x, y) => {
