@@ -78,3 +78,6 @@
   margin: 17px;
   border-bottom: 4px solid #d88148;
 }
+.navLinkActive {
+  border-bottom: 4px solid #d88148;
+}

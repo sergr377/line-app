@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import { NavLink } from 'react-router-dom';
 import s from './Navbar.module.css';
-
 
 function Navbar() {
 
@@ -11,8 +10,8 @@ function Navbar() {
                 <div className={s.backgroundBlock}></div>
             </div>
             <div className={s.navbuttonCenter}>
-                <Link className={s.navLink} to={'/twoPointPage'}>two points curve</Link>
-                <Link className={s.navLink} to={'/threePointPage'}>Three points curve</Link>
+                <NavLink className={s.navLink} activeClassName={s.navLinkActive} to={'/twoPointPage'}>two points curve</NavLink>
+                <NavLink className={s.navLink} activeClassName={s.navLinkActive} to={'/threePointPage'}>Three points curve</NavLink>
             </div>
             <div className={s.logo}>
                 <div className={s.backgroundBlock}>
@@ -28,4 +27,3 @@ function Navbar() {
 }
 
 export default Navbar
-
