@@ -1,50 +1,79 @@
+/* высота по содержимому, а не доля вьюпорта: раньше контент вылезал из серой панели */
 .mainPage {
   display: flex;
-  margin: 0px 60px;
-  background: #F0F0F0;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  height: 90%;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 16px 24px;
+  background: #F0F0F0;
 }
 
-.mainField {
-  margin: 2%;
-  
-  margin-bottom: 10px;
+.title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+/* на широком экране холст и поля встают рядом, на узком переносятся */
+.layout {
   display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
-.button {
-  margin: 20px;
-  width: 50px;
-  height: 20px;
-  background-color: #F5DEB3;
-  border-radius: 5px;
-  border-color: #DEB887;
+.canvasColumn,
+.controlsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.canvasFrame {
+  max-width: 100%;
+  border: 2px solid #262525;
+  background-color: #FAF0E6;
+  line-height: 0;
 }
 
 .canvasField {
   display: block;
-  width: 250px;
-  height: 250px;
-  border-style: solid;
-  border-color: black;
-  background-color: #FAF0E6;
-}
-
-.inputField {
-  width: 50px;
-}
-
-.buttonGroup {
-  width: 240px;
-  display: flex;
-  align-items: center;
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  touch-action: none;  /* перетаскивание точки не должно скроллить страницу */
 }
 
 .hint1 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.pointButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.button {
+  min-width: 56px;
+  min-height: 36px;
+  padding: 4px 12px;
+  background-color: #F5DEB3;
+  border: 1px solid #DEB887;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .button:disabled {
@@ -52,17 +81,56 @@
   cursor: default;
 }
 
-/* точка, ожидающая клика по холсту */
+/* чёрный текст вместо белого: на этом фоне он даёт 7.15:1 вместо 2.94:1 */
 .buttonArmed {
   composes: button;
   background-color: #d88148;
   border-color: #b3672f;
-  color: white;
+  color: #000;
+  font-weight: 600;
+}
+
+.button:focus-visible,
+.inputField:focus-visible {
+  outline: 2px solid #b3672f;
+  outline-offset: 2px;
 }
 
 .pointGroup {
+  box-sizing: border-box;
+  width: min(320px, 100%);
+  margin: 0 0 12px;
+  padding: 4px 12px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+}
+
+.pointLegend {
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* подпись идёт перед полем, а не после кнопки, как было раньше */
+.buttonGroup {
   display: flex;
-  flex-direction: column;
+  gap: 8px;
   align-items: center;
-  margin-bottom: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.fieldLabel {
+  flex: 0 0 auto;
+  min-width: 52px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.inputField {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 36px;
+  padding: 2px 8px;
 }
